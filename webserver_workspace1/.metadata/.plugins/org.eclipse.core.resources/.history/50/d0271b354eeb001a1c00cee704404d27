@@ -1,0 +1,104 @@
+package com.kh.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class PizzaServlet
+ */
+@WebServlet("/confirmPizza.do")
+public class PizzaServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public PizzaServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1) 전달값 중에 한글이 있을 경우 대비 인코딩 UTF-8 (post 방식일떄만)
+		request.setCharacterEncoding("UTF-8");
+		
+		// 2) 요청시 전달값 뽑기 (request parameter 영역으로부터)
+		String userName = request.getParameter("userName"); 	//"홍길"
+		String phone = request.getParameter("phone"); 			// "0109999999"
+		String address = request.getParameter("address");		// "t서울시"
+		String message = request.getParameter("message");		// "빨리~~"
+		
+		String pizza = request.getParameter("pizza"); 			// "콤비네이션"
+		String[] toppings = request.getParameterValues("topping"); // ["",""]
+		String[] sides = request.getParameterValues("side");
+		// 3) 요청 처리 (Service 로 전달)
+		int price = 0; 
+		
+		switch(pizza) {
+		case "콤비네이션" : price += 5000; break; 
+		case "치즈" : price += 6000; break;
+		case "포테이토" : 
+		case "고구마": price += 7000; break;
+		case "불고기" : price += 8000; break; 
+		}
+		
+		if(toppings != null) {
+			for(int i =0; i<toppings.length; i++) {
+				switch(toppings[i]) {
+				case "고구마무스" : 
+				case "콘크림무스" : price += 1500; break;
+				case "파인애플토핑" : 
+				case "치즈토핑": price += 2000; break;
+				case "츠즈크러스트" : 
+				case "치즈바이트" : price += 3000; break;
+				
+				}
+			}
+		} //e.if
+		
+		if(sides != null) {
+			for(int i=0; i<sides.length; i++) {
+				switch(sides[i]) {
+				case "콜라":
+				case "사이다": price += 2000; break; 
+				case "피클":
+				case "파마사치즈":
+				case "갈릭소스": price += 500; break;
+				case "웨지감자":
+				case "치킨봉":
+				case "치즈스티": price += 3000; break; 
+				
+				}
+			}
+		}
+		
+		
+		// 4) 반환받는 결과를 가지고 사용자가 보게될 응답페이지 만들기 혹은 jsp 위임 
+		// 응답 데이터 -> request의 attribute에 담기
+		request.setAttribute("userName", userName);
+		request.setAttribute("phone", phone);
+		request.setAttribute("address", address);
+		request.setAttribute("message", message);
+		
+		request.setAttribute("pizza", pizza);
+		request.setAttribute("toppings", toppings);
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		doGet(request, response);
+	}
+
+}

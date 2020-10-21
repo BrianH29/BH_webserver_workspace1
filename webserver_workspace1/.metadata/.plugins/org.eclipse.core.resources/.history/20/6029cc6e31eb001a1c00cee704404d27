@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.ArrayList, java.util.Date"%>
+<%@ import="java.util.Date" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<%
+	int sum = 0; 
+	
+	for(int i=1; i<=100; i++){
+		sum += i; 
+	}
+	
+	System.out.println("sum" + sum);
+	
+	ArrayList<String> list = new ArrayList<>(); 
+	// page 지시자에 import 속성으로 선언해야됨
+	
+	list.add("Servlet"); 
+	list.add("JSP"); 
+	
+	Date today = new Date(); 
+	%>
+
+</body>
+</html>

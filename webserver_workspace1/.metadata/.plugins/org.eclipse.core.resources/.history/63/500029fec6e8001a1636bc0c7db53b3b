@@ -1,0 +1,56 @@
+package com.kh.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class RequestGetServlet
+ */
+@WebServlet("/test1.do")
+public class RequestGetServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RequestGetServlet() {
+        super();
+        // TODO Auto-generated constructor stub	
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		/*
+		 * Get방식으로 요청했으면 내부적으로 자동으로 이 doGet() 메소드가 호출 될 꺼임
+		 * 
+		 * 첫번째 매개변수인 HttpServletRequest request 에는 사용자가 받아주는 용도
+		 * 두번쨰 매개변수인 HttpServletResponse response 에는 요청 처리후 나중에 사용자에게 응답을 해줄 때 사용
+		 * 
+		 * request : 요청시 전달된 내용 (사용자가 입력한 값들, 요청전송방식, 요청한 사용자의 ip 등등) 
+		 * response : 요청 처리 후 
+		 * 
+		 * 
+		 */
+		
+		System.out.println("실행되나?");
+		
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

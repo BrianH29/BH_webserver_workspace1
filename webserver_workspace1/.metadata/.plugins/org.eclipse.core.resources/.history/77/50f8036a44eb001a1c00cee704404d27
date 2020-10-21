@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<h1>피자 주문 페이지</h1>
+	
+	<h2>Today's Date</h2>
+	<%@include file="includePage.jsp" method="post"%>
+	
+	<form action="/2_JSP/confirmPizza.do">
+	
+		<button type="submit">주문</button>
+	</form>
+	
+</body>
+</html>
